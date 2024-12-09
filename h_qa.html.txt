@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Q&A</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #ffcccc, #ff99cc);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #ff0066;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .question {
+      margin: 30px auto;
+      padding: 20px;
+      border: 2px solid #ff6699;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.8);
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+    .button {
+      margin: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .yes {
+      background-color: #ff66b2;
+      color: white;
+    }
+    .yes:hover {
+      background-color: #ff3399;
+      transform: scale(1.1);
+    }
+    .no {
+      background-color: #cccccc;
+      color: #333;
+    }
+    .no:hover {
+      background-color: #999999;
+      transform: scale(1.1);
+    }
+    .message {
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      color: #ff0066;
+      font-size: 20px;
+      display: none;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>❤️ A Special Q&A for You ❤️</h1>
+  <div id="question-container" class="question">
+    <h2 id="question-text"></h2>
+    <button class="button yes" onclick="nextQuestion('yes')">Yes</button>
+    <button class="button no" onclick="nextQuestion('no')">No</button>
+  </div>
+  <div id="message" class="message"></div>
+
+  <script>
+    const questions = [
+      "wash 3arfa 9eddash ana kanbghik ?",
+      "wash 3arffa belli 7na a7sen couple fel3alam ?",
+      "wash 3arfa qelbi ch7al kayfre7 melli katkuni 7daya ?",
+      "wash 3arfa belli nti hiya soulmate dyali ?",
+      "wash 3arfa ch7al ana mezhar 7it endi nti ?",
+      "hanae wash atb9ay fjenbi ?",
+      "wash qadra tkhyli ch7al kan7med lah elik ?",
+      "wash kadenni belli our love special ?",
+      "wash 3arfa belli kanbtasem melli kanfker fik ?",
+      "mesta3da lakhir 7aja ?"
+    ];
+
+    const motivationalMessages = [
+      "kemli hakkak rak ghada mezian! ❤️",
+      "Wow 3jbuuni ajwibtek ! 😘",
+      "ayayay seadatiii ! 💖",
+      "You're the best kmmel ! 🥰",
+      "Every answer makes me love you more ! ❤️",
+      "You’re so special to me, almost there! 🌹",
+      "raki my everything, don’t stop now! 💕",
+      "yallah algmila dyali mab9a walu ! 🌟",
+      "wllahila seadaaaati ana . 😍"
+    ];
+
+    let currentQuestion = 0;
+
+    function nextQuestion(answer) {
+      const questionContainer = document.getElementById("question-container");
+      const messageDiv = document.getElementById("message");
+
+      if (currentQuestion < questions.length) {
+        let countdown = 3;
+
+        // Show motivational message with countdown
+        messageDiv.innerHTML = `${motivationalMessages[currentQuestion]}<br>Next question in <span id="countdown">${countdown}</span> seconds...`;
+        messageDiv.style.display = "block";
+
+        // Update the countdown every second
+        const interval = setInterval(() => {
+          countdown--;
+          document.getElementById("countdown").innerText = countdown;
+
+          if (countdown === 0) {
+            clearInterval(interval);
+            messageDiv.style.display = "none";
+
+            if (currentQuestion < questions.length - 1) {
+              currentQuestion++;
+              document.getElementById("question-text").innerHTML = questions[currentQuestion];
+            } else {
+              // End of questions
+              showFinalMessage();
+            }
+          }
+        }, 1000); // Update every second
+      }
+    }
+
+    function showFinalMessage() {
+      const questionContainer = document.getElementById("question-container");
+      const messageDiv = document.getElementById("message");
+
+      questionContainer.style.display = "none";
+      messageDiv.innerHTML = `
+        ❤️ Congratulations, you made it to the end! ❤️<br><br>
+        bghit angullik belli nti raki lhuub dyali lkbida dyali ou kanhbghiik bezaaf ou kantleb lah ikhellik liya . 💕
+      `;
+      messageDiv.style.display = "block";
+    }
+
+    // Initialize the first question
+    document.getElementById("question-container").style.display = "block";
+    document.getElementById("question-text").innerHTML = questions[currentQuestion];
+  </script>
+</body>
+</html>
